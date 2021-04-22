@@ -945,7 +945,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					List<String> updatedDefinitions = new ArrayList<>(this.beanDefinitionNames.size() + 1);
 					updatedDefinitions.addAll(this.beanDefinitionNames);
 					updatedDefinitions.add(beanName);
-					this.beanDefinitionNames = updatedDefinitions;
+					this.beanDefinitionNames = updatedDefinitions;// TODO zhouxiang==> 这里为什么要用这种添加方式呢？
 					removeManualSingletonName(beanName);
 				}
 			}
@@ -961,6 +961,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 
 		if (existingDefinition != null || containsSingleton(beanName)) {
+			// 重置所有已经注册过的beandefinition的缓存
 			resetBeanDefinition(beanName);
 		}
 	}
@@ -995,6 +996,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 重置所有已经注册过的beandefinition的缓存
 	 * Reset all bean definition caches for the given bean,
 	 * including the caches of beans that are derived from it.
 	 * <p>Called after an existing bean definition has been replaced or removed,

@@ -573,6 +573,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		/**
 		 * 当前的bean是单例的 && 允许bean之间的循环依赖 && bean正在创建中
+		 * //向容器中缓存单例模式的Bean对象,以防止循环引用
 		 */
 		boolean earlySingletonExposure = (mbd.isSingleton()
 				&& this.allowCircularReferences

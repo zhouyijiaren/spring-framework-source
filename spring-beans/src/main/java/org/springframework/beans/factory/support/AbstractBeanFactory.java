@@ -196,7 +196,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @return an instance of the bean
 	 * @throws BeansException if the bean could not be created
 	 *
-	 *
+	 *TODO zhouxiang==> getBean
 	 *
 	 * doGetBean(name, null, null, false);
 	 */
@@ -291,6 +291,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
 						// 维护依赖和被依赖的bean之间的关联关系，Map<String,Set<String>> dependentMap
+						//TODO zhouxiang==>把被依赖Bean注册给当前依赖的Bean
 						registerDependentBean(dep, beanName);
 						try {
 							// 先去创建当前bean所依赖的其他bean对象
@@ -334,8 +335,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					 */
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
-				// 当前需要创建的bean如果是多例
+				// 当前需要创建的bean如果是多例(原型模式)
 				else if (mbd.isPrototype()) {
+					// 原型模式( Prototype)每次都会创建一个新的对象
 					// 创建多实例bean
 					Object prototypeInstance = null;
 					try {
@@ -351,6 +353,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd);
 				}
 				// 未明确指定将要创建的bean是单例的还是多例的
+				// 配置的生命周期范围,选择实例化Bean的合适方法,这种方式在Web应用程序中
+				// 比较常用,如 request、 session、app1 ication等生命周期
 				else {
 					String scopeName = mbd.getScope();
 					// 从bean定义中获取bean的scope信息，如果bean的scope信息为null，也就是随意设置的scope，直接抛出异常

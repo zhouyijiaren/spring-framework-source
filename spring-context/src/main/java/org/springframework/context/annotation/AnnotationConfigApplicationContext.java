@@ -94,6 +94,8 @@ public class AnnotationConfigApplicationContext
 	}
 
 	/**
+	 * //默认构造函数,初始化一个空容器,容器不包含任何Bean信息,需要稍后通过调用其 register()
+	 * //方法注册配置类,并调用 refresh()方法刷新容器,触发容器对注解Bean的载入、解析和注册
 	 * Create a new AnnotationConfigApplicationContext with the given DefaultListableBeanFactory.
 	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
 	 */
@@ -108,6 +110,7 @@ public class AnnotationConfigApplicationContext
 	}
 
 	/**
+	 * //最常用的构造函数,通过将涉及的配置类传递给该构造函数,实现将相应配置类中的Bean自动注册到容器中
 	 * Create a new AnnotationConfigApplicationContext, deriving bean definitions
 	 * from the given component classes and automatically refreshing the context.
 	 * @param componentClasses one or more component classes &mdash; for example,
@@ -191,7 +194,7 @@ public class AnnotationConfigApplicationContext
 	//---------------------------------------------------------------------
 	// Implementation of AnnotationConfigRegistry
 	//---------------------------------------------------------------------
-
+// TODO 两种方式
 	/**
 	 * Register one or more component classes to be processed.
 	 * <p>Note that {@link #refresh()} must be called in order for the context

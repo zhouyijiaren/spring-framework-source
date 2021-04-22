@@ -50,4 +50,8 @@ public interface Pointcut {
 	 */
 	Pointcut TRUE = TruePointcut.INSTANCE;
 
+	public static void main(String[] args) {
+
+	}
+
 }

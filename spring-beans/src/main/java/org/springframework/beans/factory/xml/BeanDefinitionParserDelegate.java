@@ -1002,6 +1002,10 @@ public class BeanDefinitionParserDelegate {
 		return parsePropertySubElement(ele, bd, null);
 	}
 
+	public static void main(String[] args) {
+		System.out.println();
+	}
+
 	/**
 	 * Parse a value, ref or collection sub-element of a property or
 	 * constructor-arg element.
