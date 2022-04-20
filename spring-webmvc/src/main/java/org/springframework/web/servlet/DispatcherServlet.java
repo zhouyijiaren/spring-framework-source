@@ -628,6 +628,8 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * we default to BeanNameUrlHandlerMapping.
 	 */
 	private void initHandlerMappings(ApplicationContext context) {
+		//TODO zhouxiang===> 1.applicationContext什么是让spring初始化的
+		//TODO zhouxiang===> 2.这里的实现需要看一下
 		this.handlerMappings = null;
 
 		if (this.detectAllHandlerMappings) {

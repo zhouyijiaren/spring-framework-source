@@ -282,6 +282,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
+	 * TODO zhouxiang==> 依赖注入的一部分
 	 * Resolve a reference to another bean in the factory.
 	 */
 	@Nullable

@@ -784,7 +784,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			HttpSession session = request.getSession(false);
 			if (session != null) {
 				Object mutex = WebUtils.getSessionMutex(session);
-				synchronized (mutex) {
+				synchronized (mutex) {//TODO zhouxiang===> 这里是干什么的？为什么加锁，不加锁会有什么问题？
 					mav = invokeHandlerMethod(request, response, handlerMethod);
 				}
 			}
@@ -799,7 +799,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			mav = invokeHandlerMethod(request, response, handlerMethod);
 		}
 
-		// 如果请求消息头中带有Cache-Control，则按照配置的缓存策略处理Cache-Control消息头
+		// 如果请求消息头中带有Cache-Control，则按照配置的缓存策略处理Cache-Control消息头  TODO zhouxiang===> 这里的else分支是怎么处理的?
 		if (!response.containsHeader(HEADER_CACHE_CONTROL)) {
 			if (getSessionAttributesHandler(handlerMethod).hasSessionAttributes()) {
 				applyCacheSeconds(response, this.cacheSecondsForSessionAttributeHandlers);
@@ -892,7 +892,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 				invocableMethod = invocableMethod.wrapConcurrentResult(result);
 			}
 			// 处理请求，通过反射调用处理器的具体方法.
-			invocableMethod.invokeAndHandle(webRequest, mavContainer);
+			invocableMethod.invokeAndHandle(webRequest, mavContainer);// TODO zhouxiang  包括参数的绑定
 			if (asyncManager.isConcurrentHandlingStarted()) {
 				return null;
 			}

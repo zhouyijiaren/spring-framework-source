@@ -152,6 +152,9 @@ public abstract class HttpServletBean extends HttpServlet implements Environment
 
 		// Set bean properties from init parameters.
 		// 从ServletConfig中解析出Servlet配置中的init-param参数，并封装到PropertyValues中
+		/**
+		 * getServletConfig 这个方法到底是通过什么设计模式给到spring的
+		 */
 		PropertyValues pvs = new ServletConfigPropertyValues(getServletConfig(), this.requiredProperties);
 		if (!pvs.isEmpty()) {
 			try {

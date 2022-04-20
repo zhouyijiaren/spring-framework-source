@@ -196,7 +196,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @return an instance of the bean
 	 * @throws BeansException if the bean could not be created
 	 *
-	 *TODO zhouxiang==> getBean
 	 *
 	 * doGetBean(name, null, null, false);
 	 */
@@ -1029,10 +1028,10 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 		// 父BeanFactory的解释：
 		/**
-		 *  在 Spring 中可能存在多个 BeanFactory，多个 BeanFactory 可能存在 “父工厂” 与 “子工厂” 的关系。
-		 *    最常见的例子就是：Spring MVC 的 BeanFactory 和 Spring 的 BeanFactory，通常情况下，Spring 的 BeanFactory 是 “父工厂”，
-		 *    Spring MVC 的 BeanFactory 是 “子工厂”，在 Spring 中，子工厂可以使用父工厂的 BeanDefinition。
-		 *    因而，如果在当前 BeanFactory 中找不到，而又存在父工厂，则会去父工厂中查找。
+		 *  在 Spring 中可能存在多个 BeanFactory，多个 BeanFactory 可能存在 “父工厂” 与 “子工厂” 的关系。
+		 *    最常见的例子就是：Spring MVC 的 BeanFactory 和 Spring 的 BeanFactory，通常情况下，Spring 的 BeanFactory 是 “父工厂”，
+		 *    Spring MVC 的 BeanFactory 是 “子工厂”，在 Spring 中，子工厂可以使用父工厂的 BeanDefinition。
+		 *    因而，如果在当前 BeanFactory 中找不到，而又存在父工厂，则会去父工厂中查找。
 		 */
 
 		// Resolve merged bean definition locally.
@@ -1335,9 +1334,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							// 则获取父定义的MergedBeanDefinition（也就是bd的爷爷定义...）
 
 							/**
-							 * 一般情况下，Spring 通过反射机制利用 bean 的  class 属性指定实现类来实例化 bean。
-							 *   而 FactoryBean 是一种特殊的 bean，它是个工厂 bean，可以自己创建 bean 实例，如果一个类实现了 FactoryBean 接口，
-							 *   则该类可以自己定义创建实例对象的方法，只需要实现它的 getObject() 方法。
+							 * 一般情况下，Spring 通过反射机制利用 bean 的  class 属性指定实现类来实例化 bean。
+							 *   而 FactoryBean 是一种特殊的 bean，它是个工厂 bean，可以自己创建 bean 实例，如果一个类实现了 FactoryBean 接口，
+							 *   则该类可以自己定义创建实例对象的方法，只需要实现它的 getObject() 方法。
 							 *
 							 * 很多中间件都利用 FactoryBean 来进行扩展。例如：
 							 *
@@ -1358,9 +1357,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 									}
 								}
 							 注意：
-							 为了区分 “FactoryBean” 和 “FactoryBean 创建的 bean 实例”，Spring 使用了 “&” 前缀。假设我们的 beanName 为 apple，
-							   则 getBean("apple") 获得的是 AppleFactoryBean 通过 getObject() 方法创建的 bean 实例；
-							   而 getBean("&apple") 获得的是 AppleFactoryBean 本身。
+							 为了区分 “FactoryBean” 和 “FactoryBean 创建的 bean 实例”，Spring 使用了 “&” 前缀。假设我们的 beanName 为 apple，
+							   则 getBean("apple") 获得的是 AppleFactoryBean 通过 getObject() 方法创建的 bean 实例；
+							   而 getBean("&apple") 获得的是 AppleFactoryBean 本身。
 							 *
 							 */
 							pbd = getMergedBeanDefinition(parentBeanName);
